@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mihir Sharma — EECS / Math / Neuro @ Berkeley</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600;800&family=Press+Start+2P&family=Space+Grotesk:wght@300;400;500;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<canvas id="neural-bg"></canvas>
+
+<nav class="nav">
+  <div class="nav-logo">
+    <span>mihir.sh</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#about" data-label="01">about</a></li>
+    <li><a href="#experience" data-label="02">experience</a></li>
+    <li><a href="#projects" data-label="03">projects</a></li>
+    <li><a href="#awards" data-label="04">awards</a></li>
+    <li><a href="#contact" data-label="05">contact</a></li>
+  </ul>
+</nav>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <button class="coin-slot" id="coin-slot" type="button" aria-live="polite">
+      <span class="coin-pixel" aria-hidden="true"></span>
+      <span class="coin-label">insert coin</span>
+      <span class="coin-count">0 credits</span>
+    </button>
+    <div class="hero-grid">
+      <div class="hero-text">
+        <div class="hero-tag">PLAYER 01 · EECS / MATH / NEURO · UC BERKELEY</div>
+        <h1 class="hero-name">
+          <span>Mihir</span>
+          <span>Sharma</span>
+        </h1>
+        <p class="hero-sub">
+          Studying EECS, math, and neuroscience at
+          <span class="accent">UC Berkeley</span>. Interested in machine learning,
+          brain–computer interfaces, and the places they overlap.
+        </p>
+        <div class="hero-meters" aria-label="current profile">
+          <div class="meter">
+            <span>focus</span>
+            <strong>BCI / ML</strong>
+          </div>
+          <div class="meter">
+            <span>build</span>
+            <strong>agents</strong>
+          </div>
+          <div class="meter">
+            <span>class</span>
+            <strong>freshman</strong>
+          </div>
+        </div>
+        <div class="hero-ctas">
+          <a href="#projects" class="btn btn-primary">start</a>
+          <a href="mailto:mihirsharma@berkeley.edu" class="btn btn-ghost">message</a>
+        </div>
+      </div>
+      <div class="hero-art">
+        <canvas id="portrait-canvas" width="320" height="320"></canvas>
+        <div class="portrait-caption">[ PLAYER SPRITE ]</div>
+      </div>
+    </div>
+    <div class="command-strip">
+      <span>research mode</span>
+      <span>robotics route cleared</span>
+      <span>working memory online</span>
+    </div>
+    <div class="scroll-hint">press ↓</div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="section" id="about">
+    <div class="section-header">
+      <span class="section-num">01 //</span>
+      <h2 class="section-title">about</h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>
+          I'm a freshman at <span class="accent">UC Berkeley</span> studying
+          <span class="accent">EECS, mathematics, and neuroscience</span>.
+          I spend most of my time on research and building things — a habit picked up
+          somewhere between competitive robotics and a late-night MIT OCW binge.
+        </p>
+        <p>
+          Right now I work with <span class="accent">Chang Lab at UCSF</span> on using
+          speech as a biomarker for depression and chronic pain, and I'm
+          co-building <span class="accent">Working Memory</span>, a small tool
+          that helps you pick up where you left off in a coding session.
+        </p>
+        <p>
+          Outside of that: distance running, reading about consciousness, and
+          anything brain–computer-interface shaped.
+        </p>
+      </div>
+      <div class="tech-stack">
+        <div class="tech-title">// tools i reach for</div>
+        <div class="tech-grid">
+          <div class="tech-chip">PyTorch</div>
+          <div class="tech-chip">Python</div>
+          <div class="tech-chip">C / C++</div>
+          <div class="tech-chip">Java</div>
+          <div class="tech-chip">OpenCV</div>
+          <div class="tech-chip">NumPy</div>
+          <div class="tech-chip">WandB</div>
+          <div class="tech-chip">Docker</div>
+          <div class="tech-chip">Singularity</div>
+          <div class="tech-chip">Git</div>
+          <div class="tech-chip">Matplotlib</div>
+          <div class="tech-chip">Fusion CAD</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section class="section" id="experience">
+    <div class="section-header">
+      <span class="section-num">02 //</span>
+      <h2 class="section-title">experience</h2>
+    </div>
+    <div class="timeline">
+
+      <article class="xp-card">
+        <div class="xp-dot"></div>
+        <div class="xp-head">
+          <h3>ML Speech Analysis — DBS for Depression &amp; Chronic Pain</h3>
+          <span class="xp-org">Chang Lab · UCSF</span>
+        </div>
+        <ul class="xp-bullets">
+          <li>Building speech as a robust biomarker for major depressive disorder and refractory chronic pain.</li>
+          <li>Predicting symptom severity from 15+ acoustic features with SVMs over linguistic content.</li>
+          <li>Using model outputs to close the loop on automated deep-brain-stimulation treatment.</li>
+        </ul>
+      </article>
+
+      <article class="xp-card">
+        <div class="xp-dot"></div>
+        <div class="xp-head">
+          <h3>Co-Founder — Working Memory <span class="xp-tag">startup</span></h3>
+          <span class="xp-org"><a href="https://workingmemory.vip" target="_blank" rel="noopener">workingmemory.vip</a></span>
+        </div>
+        <ul class="xp-bullets">
+          <li>Agentic workflow that passively observes your coding sessions and reconstructs context.</li>
+          <li>Summarizes progress so you re-enter any project with zero ramp-up cost.</li>
+        </ul>
+      </article>
+
+      <article class="xp-card">
+        <div class="xp-dot"></div>
+        <div class="xp-head">
+          <h3>Computer Vision for Robotics — Pre-Trained ViTs</h3>
+          <span class="xp-org">The AirLab · CMU Robotics Institute</span>
+        </div>
+        <ul class="xp-bullets">
+          <li>440+ hours designing a generalized pre-trained Vision Transformer for dense correspondence.</li>
+          <li>Stripped task-specific heads from UniMatch ViT; pre-trained on random feature-map crop matching.</li>
+          <li>Contributed to <em>UniFlowMatch</em> (pub. 06/10/2025) and <em>Map-It-Anywhere</em> (NeurIPS 2024).</li>
+          <li>Shipped with PyTorch, WandB, Docker/Singularity on PSC supercomputing clusters.</li>
+        </ul>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="section" id="projects">
+    <div class="section-header">
+      <span class="section-num">03 //</span>
+      <h2 class="section-title">projects</h2>
+    </div>
+    <div class="projects-grid">
+
+      <a href="https://drive.google.com/file/d/1absOtSIuoJ7bPdA45kgXWDqWRFniqTPC/view?usp=sharing" target="_blank" rel="noopener" class="project-card" data-level="stage 01">
+        <div class="project-art" data-art="neural"></div>
+        <div class="project-body">
+          <h3>C. elegans Neural Simulation</h3>
+          <p>Modeled the ventral nerve cord with coupled ODEs; rendered a 30fps motion trace driven by spiking neurons. Neurotech@Berkeley.</p>
+          <div class="tags">
+            <span>Python</span><span>NumPy</span><span>ODEs</span><span>BNN</span>
+          </div>
+          <div class="project-go">watch video &gt;</div>
+        </div>
+      </a>
+
+      <a href="https://drive.google.com/file/d/1MeTwCtZy-pHOSrOozW-rxva2dQrTO1cg/view?usp=sharing" target="_blank" rel="noopener" class="project-card" data-level="stage 02">
+        <div class="project-art" data-art="robot"></div>
+        <div class="project-body">
+          <h3>FTC Robotics — Auto &amp; CAD</h3>
+          <p>16,000+ lines of Java across 500+ revisions. Quintic-spline autonomous with 3-dead-wheel odometry and OpenCV classification on an NPU camera.</p>
+          <div class="tags">
+            <span>Java</span><span>OpenCV</span><span>Fusion</span><span>World Champ</span>
+          </div>
+          <div class="project-go">watch video &gt;</div>
+        </div>
+      </a>
+
+      <a href="https://workingmemory.vip" target="_blank" rel="noopener" class="project-card" data-level="stage 03">
+        <div class="project-art" data-art="brain"></div>
+        <div class="project-body">
+          <h3>Working Memory</h3>
+          <p>An agentic IDE companion that watches, summarizes, and reconstructs dev context so you never lose your train of thought.</p>
+          <div class="tags">
+            <span>Agents</span><span>LLMs</span><span>DX</span><span>Startup</span>
+          </div>
+          <div class="project-go">visit site &gt;</div>
+        </div>
+      </a>
+
+      <a href="https://drive.google.com/drive/folders/1pGeqylgtwJ3X-nK8Mf6HUrpkxFuSdkAL?usp=sharing" target="_blank" rel="noopener" class="project-card" data-level="stage 04">
+        <div class="project-art" data-art="gear"></div>
+        <div class="project-body">
+          <h3>Drivetrain &amp; Chassis Design</h3>
+          <p>250+ hours across two robots — carbon fiber, aluminum, and FR4 parts designed in Fusion 360.</p>
+          <div class="tags">
+            <span>Fusion 360</span><span>CAD</span><span>Carbon Fiber</span>
+          </div>
+          <div class="project-go">portfolio &gt;</div>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- AWARDS -->
+  <section class="section" id="awards">
+    <div class="section-header">
+      <span class="section-num">04 //</span>
+      <h2 class="section-title">awards &amp; highlights</h2>
+    </div>
+    <div class="awards-grid">
+      <div class="award">
+        <div class="award-title">HackUTD</div>
+        <div class="award-sub">grand prize</div>
+      </div>
+      <div class="award">
+        <div class="award-title">FTC Robotics</div>
+        <div class="award-sub">world champion</div>
+      </div>
+      <div class="award">
+        <div class="award-title">USACO</div>
+        <div class="award-sub">gold division</div>
+      </div>
+      <div class="award">
+        <div class="award-title">USABO</div>
+        <div class="award-sub">semifinalist</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section contact-section" id="contact">
+    <div class="section-header">
+      <span class="section-num">05 //</span>
+      <h2 class="section-title">get in touch</h2>
+    </div>
+    <div class="contact-inner">
+      <div class="terminal">
+        <div class="terminal-bar">
+          <span class="dot red"></span>
+          <span class="dot yellow"></span>
+          <span class="dot green"></span>
+          <span class="terminal-title">~/contact — zsh</span>
+        </div>
+        <div class="terminal-body">
+          <div><span class="prompt">mihir@berkeley</span>:<span class="path">~</span>$ cat contact.txt</div>
+          <div class="line">email: <a href="mailto:mihirsharma@berkeley.edu">mihirsharma@berkeley.edu</a></div>
+          <div class="line">phone: <a href="tel:+14123133729">+1 (412) 313-3729</a></div>
+          <div class="line">github: <a href="https://github.com/Mihirz" target="_blank" rel="noopener">github.com/Mihirz</a></div>
+          <div class="line">linkedin: <a href="https://linkedin.com/in/mihir-sharma-244070278" target="_blank" rel="noopener">in/mihir-sharma</a></div>
+          <div><span class="prompt">mihir@berkeley</span>:<span class="path">~</span>$ <span class="cursor-blink">█</span></div>
+        </div>
+      </div>
+    </div>
+    <footer class="footer">
+      <span>© <span id="year"></span> mihir sharma</span>
+    </footer>
+  </section>
+
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
