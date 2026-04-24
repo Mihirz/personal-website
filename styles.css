@@ -217,10 +217,11 @@ main::after { right: 18px; }
 }
 
 .section-title {
-  font-family: var(--scribble);
-  font-size: 2.5rem;
-  line-height: 1;
-  transform: rotate(-1.2deg);
+  font-family: var(--pixel);
+  font-size: 1.4rem;
+  line-height: 1.1;
+  letter-spacing: 0.04em;
+  text-transform: lowercase;
 }
 
 .section-header::after {
@@ -574,20 +575,6 @@ main::after { right: 18px; }
   inset: 4px;
   border: 1px solid rgba(240,234,223,0.12);
   pointer-events: none;
-}
-
-.project-card::after {
-  content: attr(data-level);
-  position: absolute;
-  top: 0.65rem;
-  left: 0.65rem;
-  z-index: 3;
-  font-family: var(--pixel);
-  font-size: 0.46rem;
-  color: #11120f;
-  background: var(--project-accent);
-  padding: 0.38rem 0.45rem;
-  box-shadow: 3px 3px 0 var(--pixel-shadow);
 }
 
 .project-art {
