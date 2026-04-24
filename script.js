@@ -19,11 +19,19 @@ if (yearEl) yearEl.textContent = new Date().getFullYear();
   };
   renderCredits();
 
+  let audioCtx = null;
+  const getAudio = () => {
+    if (audioCtx) return audioCtx;
+    const AC = window.AudioContext || window.webkitAudioContext;
+    if (!AC) return null;
+    audioCtx = new AC();
+    return audioCtx;
+  };
   const playCoin = () => {
-    const AudioContext = window.AudioContext || window.webkitAudioContext;
-    if (!AudioContext) return;
-    const audio = new AudioContext();
-    const now = audio.currentTime;
+    const audio = getAudio();
+    if (!audio) return;
+    if (audio.state === 'suspended') audio.resume();
+    const now = audio.currentTime + 0.01;
     [784, 1175, 1568].forEach((freq, i) => {
       const osc = audio.createOscillator();
       const gain = audio.createGain();
@@ -34,9 +42,8 @@ if (yearEl) yearEl.textContent = new Date().getFullYear();
       gain.gain.exponentialRampToValueAtTime(0.0001, now + i * 0.055 + 0.09);
       osc.connect(gain).connect(audio.destination);
       osc.start(now + i * 0.055);
-      osc.stop(now + i * 0.055 + 0.1);
+      osc.stop(now + i * 0.055 + 0.12);
     });
-    setTimeout(() => audio.close(), 350);
   };
 
   coin.addEventListener('click', () => {
