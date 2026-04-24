@@ -217,10 +217,11 @@ main::after { right: 18px; }
 }
 
 .section-title {
-  font-family: var(--pixel);
-  font-size: 1.4rem;
-  line-height: 1.1;
-  letter-spacing: 0.04em;
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 2.25rem;
+  line-height: 1;
+  letter-spacing: -0.01em;
   text-transform: lowercase;
 }
 
@@ -706,7 +707,7 @@ main::after { right: 18px; }
   .hero { padding: 7rem 1.5rem 3rem; }
   .hero-grid { grid-template-columns: 1fr; gap: 2rem; }
   .hero-name { font-size: 4rem; }
-  .section-title { font-size: 1.2rem; }
+  .section-title { font-size: 1.75rem; }
   .section { padding: 5rem 1.5rem 2rem; }
   .about-grid { grid-template-columns: 1fr; gap: 2rem; }
   .projects-grid { grid-template-columns: 1fr; }
@@ -714,7 +715,7 @@ main::after { right: 18px; }
 
 @media (max-width: 520px) {
   .hero-name { font-size: 3.2rem; }
-  .section-title { font-size: 1rem; }
+  .section-title { font-size: 1.5rem; }
   .hero-tag, .btn, .project-go, .portrait-caption, .scroll-hint { font-size: 0.48rem; }
   .project-body h3 { font-size: 0.68rem; }
   .terminal-body { font-size: 0.78rem; padding: 1.25rem; }
