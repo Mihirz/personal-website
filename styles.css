@@ -550,6 +550,7 @@ main::after { right: 18px; }
 .project-card:nth-child(3) { --project-accent: var(--accent-3); }
 .project-card:nth-child(4) { --project-accent: var(--accent-4); }
 .project-card:nth-child(5) { --project-accent: var(--accent); }
+.project-card:nth-child(6) { --project-accent: var(--accent-2); }
 
 .project-card {
   position: relative;
