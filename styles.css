@@ -485,18 +485,6 @@ main::after { right: 18px; }
   box-shadow: 0 22px 42px rgba(0, 0, 0, 0.28);
 }
 
-.xp-card::after {
-  content: 'quest log';
-  position: absolute;
-  top: -1.1rem;
-  right: 1rem;
-  font-family: var(--pixel);
-  font-size: 0.46rem;
-  color: var(--bg);
-  background: var(--xp-accent);
-  padding: 0.35rem 0.45rem;
-}
-
 .xp-dot {
   position: absolute;
   left: -2rem;
@@ -632,8 +620,14 @@ main::after { right: 18px; }
 
 .awards-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
+}
+@media (max-width: 780px) {
+  .awards-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 480px) {
+  .awards-grid { grid-template-columns: 1fr; }
 }
 
 .award {
