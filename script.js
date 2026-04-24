@@ -102,10 +102,14 @@ if (yearEl) yearEl.textContent = new Date().getFullYear();
 
   const px = ([x, y]) => [Math.round(x * innerWidth), Math.round(y * innerHeight)];
 
+  let lastT = null;
   const step = (t) => {
+    const dt = lastT === null ? 16.6667 : Math.min(100, t - lastT);
+    lastT = t;
+    const smooth = 1 - Math.exp(-dt / 138.6);
     ctx.clearRect(0, 0, innerWidth, innerHeight);
-    pointer.x += (pointer.tx - pointer.x) * 0.12;
-    pointer.y += (pointer.ty - pointer.y) * 0.12;
+    pointer.x += (pointer.tx - pointer.x) * smooth;
+    pointer.y += (pointer.ty - pointer.y) * smooth;
 
     if (pointer.active) {
       const glow = ctx.createRadialGradient(pointer.x, pointer.y, 0, pointer.x, pointer.y, 180);
@@ -195,19 +199,18 @@ if (yearEl) yearEl.textContent = new Date().getFullYear();
   ctx.imageSmoothingEnabled = false;
   const img = new Image();
   img.src = '8bitme.png';
-  let scanY = 0;
-  let bob = 0;
-  const animate = () => {
+  const animate = (t) => {
+    const ticks = t * 0.06;
     ctx.clearRect(0, 0, cnv.width, cnv.height);
-    bob += 0.04;
+    const bob = ticks * 0.04;
     const dy = Math.sin(bob) > 0 ? 0 : 4;
     if (img.complete && img.naturalWidth > 0) ctx.drawImage(img, 0, -dy * 0.5, cnv.width, cnv.height);
     ctx.fillStyle = 'rgba(240, 234, 223, 0.08)';
+    const scanY = (ticks * 2) % cnv.height;
     ctx.fillRect(0, scanY, cnv.width, 14);
-    scanY = (scanY + 2) % cnv.height;
     requestAnimationFrame(animate);
   };
-  animate();
+  requestAnimationFrame(animate);
 })();
 
 (() => {
@@ -477,13 +480,12 @@ if (yearEl) yearEl.textContent = new Date().getFullYear();
     el.appendChild(cnv);
     const ctx = cnv.getContext('2d');
     ctx.imageSmoothingEnabled = false;
-    let t = 0;
-    const loop = () => {
-      t += 1;
+    const loop = (now) => {
+      const t = now * 0.06;
       fn(ctx, cnv.width, cnv.height, t);
       requestAnimationFrame(loop);
     };
-    loop();
+    requestAnimationFrame(loop);
   });
 })();
 
@@ -521,13 +523,17 @@ if (yearEl) yearEl.textContent = new Date().getFullYear();
     el.addEventListener('pointerenter', () => document.body.classList.add('cursor-hover'));
     el.addEventListener('pointerleave', () => document.body.classList.remove('cursor-hover'));
   });
-  const loop = () => {
-    rx += (x - rx) * 0.18;
-    ry += (y - ry) * 0.18;
+  let lastT = null;
+  const loop = (t) => {
+    const dt = lastT === null ? 16.6667 : Math.min(100, t - lastT);
+    lastT = t;
+    const smooth = 1 - Math.exp(-dt / 83.7);
+    rx += (x - rx) * smooth;
+    ry += (y - ry) * smooth;
     ring.style.transform = `translate(${rx}px, ${ry}px)`;
     requestAnimationFrame(loop);
   };
-  loop();
+  requestAnimationFrame(loop);
 })();
 
 (() => {
