@@ -331,26 +331,34 @@ if (yearEl) yearEl.textContent = new Date().getFullYear();
     gear: (ctx, W, H, t) => {
       ctx.fillStyle = '#111318';
       ctx.fillRect(0, 0, W, H);
-      const drawGear = (cx, cy, R, teeth, rot, color) => {
-        const inner = R * 0.55;
-        ctx.fillStyle = color;
+      ctx.strokeStyle = 'rgba(242,184,75,0.18)';
+      for (let x = 0; x < W; x += 16) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke(); }
+      for (let y = 0; y < H; y += 16) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke(); }
+      const drawPixelGear = (cx, cy, R, teeth, rot, color) => {
         for (let i = 0; i < teeth; i++) {
           const a = rot + (i / teeth) * Math.PI * 2;
-          const tx = cx + Math.cos(a) * R;
-          const ty = cy + Math.sin(a) * R;
-          ctx.fillRect(tx - 3, ty - 3, 6, 6);
+          const tx = Math.round((cx + Math.cos(a) * R) / 4) * 4;
+          const ty = Math.round((cy + Math.sin(a) * R) / 4) * 4;
+          ctx.fillStyle = color;
+          ctx.fillRect(tx - 4, ty - 4, 8, 8);
         }
-        ctx.beginPath();
-        ctx.arc(cx, cy, R * 0.78, 0, Math.PI * 2);
-        ctx.fill();
+        const r = Math.round(R * 0.7);
+        for (let dy = -r; dy <= r; dy += 4) {
+          const dx = Math.round(Math.sqrt(Math.max(0, r * r - dy * dy)) / 4) * 4;
+          ctx.fillStyle = color;
+          ctx.fillRect(Math.round((cx - dx) / 4) * 4, Math.round((cy + dy) / 4) * 4, dx * 2, 4);
+        }
+        const hub = 6;
         ctx.fillStyle = '#111318';
-        ctx.beginPath();
-        ctx.arc(cx, cy, inner * 0.5, 0, Math.PI * 2);
-        ctx.fill();
+        ctx.fillRect(Math.round(cx / 4) * 4 - hub, Math.round(cy / 4) * 4 - hub, hub * 2, hub * 2);
       };
-      drawGear(W * 0.35, H * 0.5, 36, 10, t * 0.02, '#86b7f3');
-      drawGear(W * 0.72, H * 0.42, 22, 8, -t * 0.03, '#f2b84b');
-      drawGear(W * 0.68, H * 0.78, 18, 7, t * 0.04, '#ef6f5b');
+      drawPixelGear(W * 0.35, H * 0.5, 40, 10, t * 0.02, '#86b7f3');
+      drawPixelGear(W * 0.72, H * 0.42, 24, 8, -t * 0.03, '#f2b84b');
+      drawPixelGear(W * 0.68, H * 0.78, 20, 7, t * 0.04, '#ef6f5b');
+      [[36, 32], [58, 128], [340, 30], [356, 124]].forEach(([x, y], i) => {
+        ctx.fillStyle = i % 2 ? '#7fd7cc' : '#f2c86e';
+        ctx.fillRect(x, y, 8, 8);
+      });
     },
     eco: (ctx, W, H, t) => {
       const sky = ctx.createLinearGradient(0, 0, 0, H);
