@@ -526,6 +526,82 @@ if (yearEl) yearEl.textContent = new Date().getFullYear();
         ctx.stroke();
       }
     },
+    pfc: (ctx, W, H, t) => {
+      ctx.fillStyle = '#111318';
+      ctx.fillRect(0, 0, W, H);
+      ctx.strokeStyle = 'rgba(220,128,108,0.16)';
+      for (let x = 0; x < W; x += 16) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke(); }
+      for (let y = 0; y < H; y += 16) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke(); }
+      const modes = [
+        { label: 'EXPLORE', color: '#5fd2c0' },
+        { label: 'APPROACH', color: '#86b7f3' },
+        { label: 'EXPLOIT', color: '#f2b84b' },
+      ];
+      const sel = Math.floor(t / 50) % 3;
+      const active = modes[sel];
+      // meta-controller (PFC): three GRU "cells" gating the active sub-objective
+      ctx.fillStyle = '#161d24';
+      ctx.fillRect(18, 12, 232, 30);
+      ctx.strokeStyle = '#33414c';
+      ctx.lineWidth = 2;
+      ctx.strokeRect(18, 12, 232, 30);
+      modes.forEach((m, i) => {
+        const cx = 54 + i * 72;
+        const on = i === sel;
+        const r = on ? 11 : 7;
+        ctx.fillStyle = on ? m.color : '#1c2630';
+        ctx.fillRect(cx - r, 27 - r, r * 2, r * 2);
+        ctx.strokeStyle = on ? '#f0eadf' : m.color;
+        ctx.lineWidth = 2;
+        ctx.strokeRect(cx - r, 27 - r, r * 2, r * 2);
+        if (on) {
+          ctx.fillStyle = '#11120f';
+          ctx.fillRect(cx - 3, 24, 6, 6);
+        }
+      });
+      // recurrent links between cells
+      ctx.strokeStyle = 'rgba(240,234,223,0.25)';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(54, 27); ctx.lineTo(126, 27); ctx.lineTo(198, 27); ctx.stroke();
+      // gating signal down to the agent
+      ctx.strokeStyle = active.color;
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(54 + sel * 72, 40);
+      ctx.lineTo(W / 2, 64);
+      ctx.stroke();
+      // grid arena
+      const ax = 96, ay = 70, cell = 18, n = 8;
+      ctx.strokeStyle = '#2a3640';
+      for (let i = 0; i <= n; i++) {
+        ctx.beginPath(); ctx.moveTo(ax + i * cell, ay); ctx.lineTo(ax + i * cell, ay + n * cell * 0.6); ctx.stroke();
+      }
+      // goal
+      const gx = ax + 7 * cell, gy = ay + 4 * 0.6 * cell;
+      ctx.fillStyle = '#f2b84b';
+      ctx.fillRect(gx - 5, gy - 5, 10, 10);
+      ctx.fillStyle = 'rgba(242,184,75,0.4)';
+      ctx.fillRect(gx - 8, gy - 8, 16, 16);
+      // agent path toward goal, biased by current sub-objective
+      const prog = (t * 0.02) % 1;
+      const agx = ax + cell + (gx - ax - cell) * prog;
+      const wobble = active.label === 'EXPLORE' ? Math.sin(t * 0.2) * 14 : Math.sin(t * 0.1) * 4;
+      const agy = ay + 1.6 * cell + (gy - ay - 1.6 * cell) * prog + wobble;
+      // trail
+      for (let i = 0; i < 8; i++) {
+        const p = Math.max(0, prog - i * 0.04);
+        const tx = ax + cell + (gx - ax - cell) * p;
+        const ty = ay + 1.6 * cell + (gy - ay - 1.6 * cell) * p;
+        ctx.fillStyle = `rgba(${active.label === 'EXPLOIT' ? '242,184,75' : active.label === 'APPROACH' ? '134,183,243' : '95,210,192'},${0.35 - i * 0.04})`;
+        ctx.fillRect(tx - 3, ty - 3, 6, 6);
+      }
+      // agent
+      ctx.fillStyle = '#f0eadf';
+      ctx.fillRect(agx - 4, agy - 4, 8, 8);
+      ctx.fillStyle = active.color;
+      ctx.fillRect(agx - 2, agy - 2, 4, 4);
+    },
   };
 
   $$('.project-art').forEach((el) => {
