@@ -19,7 +19,7 @@
   --scribble: 'Caveat', cursive;
 }
 
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; background-color: var(--bg); }
 ::selection { background: var(--accent-3); color: #11120f; }
 
 body {
